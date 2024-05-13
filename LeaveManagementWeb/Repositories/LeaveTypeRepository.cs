@@ -1,5 +1,5 @@
 ﻿using LeaveManagementWeb.Contracts;
-using LeaveManagementWeb.Data;
+using LeaveManagementData;
 
 namespace LeaveManagementWeb.Repositories
 {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LeaveManagementWeb.Data
+namespace LeaveManagementData
 {
     public class LeaveAllocation : BaseEntity
     {

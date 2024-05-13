@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using LeaveManagementWeb.Data;
+using LeaveManagementData;
 using AutoMapper;
 using LeaveManagementWeb.Models;
 using LeaveManagementWeb.Contracts;
 using Microsoft.AspNetCore.Authorization;
-using LeaveManagementWeb.Constants;
+using LeaveManagementCommon.Constants;
 
 namespace LeaveManagementWeb.Controllers
 {
@@ -101,11 +101,18 @@ namespace LeaveManagementWeb.Controllers
                 return NotFound();
             }
 
+            var leaveType = await leaveTypeRepository.GetAsync(id);
+
+            if (leaveType == null)
+            {
+                return NotFound();
+            }
+
             if (ModelState.IsValid)
             {
                 try
-                {
-                    var leaveType = mapper.Map<LeaveType>(leaveTypeVM);
+                {                    
+                    mapper.Map(leaveTypeVM, leaveType);
                     await leaveTypeRepository.UpdateAysnc(leaveType);
                 }
                 catch (DbUpdateConcurrencyException)

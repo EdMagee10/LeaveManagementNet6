@@ -1,4 +1,4 @@
-﻿namespace LeaveManagementWeb.Constants
+﻿namespace LeaveManagementCommon.Constants
 {
     public static class Roles
     {

@@ -1,5 +1,5 @@
 ﻿using LeaveManagementWeb.Contracts;
-using LeaveManagementWeb.Data;
+using LeaveManagementData;  
 using Microsoft.EntityFrameworkCore;
 
 namespace LeaveManagementWeb.Repositories
@@ -54,7 +54,8 @@ namespace LeaveManagementWeb.Repositories
 
         public async Task UpdateAysnc(T entity)
         {
-            context.Update(entity);
+            //context.Update(entity);
+            context.Entry(entity).State= EntityState.Modified;
             await context.SaveChangesAsync();
         }
     }

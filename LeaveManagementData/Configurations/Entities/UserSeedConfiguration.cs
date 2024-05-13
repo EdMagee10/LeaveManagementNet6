@@ -1,9 +1,8 @@
-﻿using LeaveManagementWeb.Data;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace LeaveManagementWeb.Configurations.Entities
+namespace LeaveManagementData.Configurations.Entities
 {
     public class UserSeedConfiguration : IEntityTypeConfiguration<Employee>
     {

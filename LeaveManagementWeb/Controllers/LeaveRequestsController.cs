@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using LeaveManagementWeb.Data;
+using LeaveManagementData;
 using LeaveManagementWeb.Models;
 using AutoMapper;
 using LeaveManagementWeb.Contracts;
 using LeaveManagementWeb.Repositories;
 using Microsoft.AspNetCore.Authorization;
-using LeaveManagementWeb.Constants;
+using LeaveManagementCommon.Constants;
 
 namespace LeaveManagementWeb.Controllers
 {
@@ -104,8 +104,12 @@ namespace LeaveManagementWeb.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    await leaveRequestRepository.CreateLeaveRequest(model);
-                    return RedirectToAction(nameof(MyLeave));
+                    var isValidRequest = await leaveRequestRepository.CreateLeaveRequest(model);
+                    if (isValidRequest)
+                    {
+                        return RedirectToAction(nameof(MyLeave));
+                    }
+                    ModelState.AddModelError(string.Empty, "You have exceeded your allocation with this request.");
                 }
             }
             catch (Exception ex)

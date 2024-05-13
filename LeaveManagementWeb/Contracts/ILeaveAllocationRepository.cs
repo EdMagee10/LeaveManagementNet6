@@ -1,4 +1,4 @@
-﻿using LeaveManagementWeb.Data;
+﻿using LeaveManagementData;
 using LeaveManagementWeb.Models;
 
 namespace LeaveManagementWeb.Contracts
